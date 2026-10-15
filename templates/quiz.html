@@ -17,6 +17,7 @@
         <form action="/submit" method="POST">
 
             {% for question in questions %}
+            {% set question_index = loop.index0 %}
 
             <div class="question">
                 <h3>
@@ -28,7 +29,7 @@
                 <label class="option">
                     <input
                         type="radio"
-                        name="question_{{ loop.parent.index0 }}"
+                        name="question_{{ question_index }}"
                         value="{{ option }}"
                         required
                     >
