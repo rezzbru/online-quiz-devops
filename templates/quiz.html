@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="quiz-card">
+
+        <h1>Online Quiz</h1>
+
+        <form action="/submit" method="POST">
+
+            {% for question in questions %}
+
+            <div class="question">
+                <h3>
+                    {{ loop.index }}. {{ question.question }}
+                </h3>
+
+                {% for option in question.options %}
+
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="question_{{ loop.parent.index0 }}"
+                        value="{{ option }}"
+                        required
+                    >
+                    {{ option }}
+                </label>
+
+                {% endfor %}
+            </div>
+
+            {% endfor %}
+
+            <button type="submit" class="btn">
+                Submit Quiz
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>
